@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mahorat Soft - Professional Software Development & IT Solutions">
+    <title>Mahorat Soft - Zamonaviy IT Yechimlar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0A1929;
+            --bg-darker: #051E2F;
+            --primary: #0F3B66;
+            --primary-light: #1a5a99;
+            --accent: #00D4FF;
+            --accent-light: #00F0FF;
+            --accent-secondary: #FF6B9D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3D9FF;
+            --text-tertiary: #8FA3BA;
+            --border-color: rgba(0, 212, 255, 0.15);
+            --surface: rgba(15, 59, 102, 0.4);
+            --surface-light: rgba(0, 212, 255, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                    radial-gradient(circle at 15% 40%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 85% 85%, rgba(255, 107, 157, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate(var(--tx), var(--ty));
+            }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120px) translateX(var(--px));
+                opacity: 0;
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        .animate-slide-up { animation: slideInUp 0.6s ease-out; }
+        .animate-slide-left { animation: slideInLeft 0.6s ease-out; }
+        .animate-slide-right { animation: slideInRight 0.6s ease-out; }
+        .animate-fade-scale { animation: fadeInScale 0.6s ease-out; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 25, 41, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 25, 41, 0.95);
+            padding: 0.8rem 0;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 16px rgba(0, 212, 255, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-dark);
+            border-color: var(--accent);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 4rem;
+            scroll-margin-top: 100px;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .sparkle-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, var(--accent-light), var(--accent));
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent), 0 0 12px rgba(0, 212, 255, 0.6);
+        }
+
+        .floating-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.9), rgba(0, 212, 255, 0.3));
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+        }
+
+        .hero-content {
+            flex: 1;
+            position: relative;
+            z-index: 10;
+            max-width: 550px;
+            min-width: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            z-index: 5;
+            min-width: 300px;
+            max-width: 550px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: slideInLeft 0.8s ease-out;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideInLeft 0.8s ease-out 0.1s backwards;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: slideInLeft 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-dark);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-icons {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            z-index: 2;
+        }
+
+        .icon-card {
+            background: var(--surface-light);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .icon-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .icon-card:hover {
+            background: var(--surface);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 24px 48px rgba(0, 212, 255, 0.15);
+        }
+
+        .icon-card:hover::before {
+            opacity: 1;
+        }
+
+        .icon-card i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .icon-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .icon-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .section-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(255, 107, 157, 0.05) 100%);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(255, 107, 157, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            height: 300px;
+            position: relative;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(255, 107, 157, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+        }
+
+        .portfolio-card:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 107, 157, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 25, 41, 0.95) 100%);
+            padding: 2rem;
+            transform: translateY(100px);
+            transition: transform 0.4s ease;
+            z-index: 3;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            background: var(--surface);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--surface);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            flex-shrink: 0;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-content h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 107, 157, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .about-image i {
+            font-size: 8rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+                order: -1;
+            }
+
+            .feature-item {
+                padding: 1rem;
+            }
+
+            .feature-icon {
+                min-width: 40px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(255, 107, 157, 0.05) 100%);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .benefit-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(255, 107, 157, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-12px);
+            box-shadow: 0 24px 48px rgba(0, 212, 255, 0.15);
+        }
+
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+        }
+
+        .contact-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+        }
+
+        .contact-content a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-content a:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--accent);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(255, 107, 157, 0.2) 100%);
+            border-color: rgba(0, 212, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 212, 255, 0.2);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--surface-light);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: var(--surface);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .form-submit {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.3);
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            background: rgba(5, 30, 47, 0.8);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                gap: 2rem;
+                flex-direction: column;
+            }
+
+            .hero-image {
+                max-width: 100%;
+                order: -1;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 25, 41, 0.95);
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<header id="header">
+    <div class="header-container">
+        <a href="#" class="logo">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-nrXatT9WN0nazxCknXtEfJG63iS6Ly.png" alt="Mahorat Soft" style="width: 120px; height: 70px; border-radius: 8px; object-fit: contain;">
+        </a>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#home" class="nav-link" data-i18n="nav-home">Bosh sahifa</a></li>
+                <li><a href="#services" class="nav-link" data-i18n="nav-services">Xizmatlar</a></li>
+                <li><a href="#portfolio" class="nav-link" data-i18n="nav-portfolio">Loyihalar</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="nav-about">Haqimizda</a></li>
+                <li><a href="#benefits" class="nav-link" data-i18n="nav-benefits">Foydalari</a></li>
+                <li><a href="#why-mahorat" class="nav-link" data-i18n="nav-why">Nima uchun</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav-contact">Aloqa</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="uz" onclick="changeLanguage('uz')">Uz</button>
+            <button class="lang-btn" data-lang="ru" onclick="changeLanguage('ru')">Ru</button>
+            <button class="lang-btn" data-lang="en" onclick="changeLanguage('en')">Eng</button>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content animate-slide-left">
+        <h1><span data-i18n="hero-title">Zamonaviy IT Yechimlar</span></h1>
+        <p class="hero-description" data-i18n="hero-desc">Mahorat Soft - sizning biznesingiz uchun professional va innovatsion dasturiy yechimlari taqdim etadi.</p>
+        <div class="cta-buttons">
+            <button class="btn btn-primary" onclick="scrollToSection('contact')" data-i18n="hero-btn-contact">Bog'lanish</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('services')" data-i18n="hero-btn-services">Xizmatlarni Ko'rish</button>
+        </div>
+    </div>
+    </div>
+
+    <div class="hero-image animate-slide-right">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-4gnta6067vKGOEVNBjVoThDe5HYBup.png" alt="Mahorat Soft - IT Yechimlar" style="width: 100%; height: auto; border-radius: 16px; box-shadow: 0 24px 48px rgba(0, 212, 255, 0.3); border: 1px solid rgba(0, 212, 255, 0.3);">
+    </div>
+</section>
+
+<section id="services">
+    <h2 class="section-title"><span data-i18n="services-title">Bizning Xizmatlar</span></h2>
+    <p class="section-subtitle" data-i18n="services-subtitle">Biz sotsiallashgan IT yechimlar taqdim etamiz</p>
+
+    <div class="services-grid">
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-laptop service-icon"></i>
+            <h3 data-i18n="service-web">Web Taraqqiyoti</h3>
+            <p data-i18n="service-web-desc">React, Vue, Angular va boshqa zamonaviy frameworklar bilan professional veb-saytlar yaratamiz.</p>
+        </div>
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-phone service-icon"></i>
+            <h3 data-i18n="service-mobile">Mobil Ilovalar</h3>
+            <p data-i18n="service-mobile-desc">React Native va Flutter bilan cross-platform mobil ilovalarini ishlab chiqamiz.</p>
+        </div>
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-database service-icon"></i>
+            <h3 data-i18n="service-backend">Backend Xizmatlari</h3>
+            <p data-i18n="service-backend-desc">Node.js, Python, Django va boshqa zamonaviy texnologiyalardan foydalanib backend xizmatlari.</p>
+        </div>
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-shield-alt service-icon"></i>
+            <h3 data-i18n="service-security">Xavfsizlik</h3>
+            <p data-i18n="service-security-desc">Yuqori darajadagi xavfsizlik protokollari va ma'lumotlar himoyasi.</p>
+        </div>
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-cloud service-icon"></i>
+            <h3 data-i18n="service-cloud">Cloud Xizmatlari</h3>
+            <p data-i18n="service-cloud-desc">AWS, Google Cloud, Azure va boshqa bulutli platformalarda deployment va boshqaruv.</p>
+        </div>
+        <div class="service-card animate-slide-up">
+            <i class="fas fa-headset service-icon"></i>
+            <h3 data-i18n="service-support">24/7 Qo'llab-quvvatlash</h3>
+            <p data-i18n="service-support-desc">Har qanday muammoni tezda yechish uchun 24/7 qo'llab-quvvatlash jamasi.</p>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio">
+    <h2 class="section-title"><span data-i18n="portfolio-title">Bizning Loyihalar</span></h2>
+    <p class="section-subtitle" data-i18n="portfolio-subtitle">Muvaffaqiyatli yakunlangan loyihalari</p>
+
+    <div class="portfolio-grid">
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-z6jpCV8wSNb7WcCCry3HKc3EYrdmqe.png" alt="E-Commerce Platform" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-1">E-Commerce Platform</h3>
+                <p data-i18n="portfolio-1-desc">React.js va Node.js bilan yaratilgan online do'kon platformasi</p>
+            </div>
+        </div>
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-c2NOnRMAdYIiSP5X48YP4GKz0cJhXj.png" alt="Analytics Dashboard" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-2">Analytics Dashboard</h3>
+                <p data-i18n="portfolio-2-desc">Mustahkam analytics va reporting sistem</p>
+            </div>
+        </div>
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-UgsgT4L5MWSvaUtqifKzr8B88GzZNQ.png" alt="Mobile App" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-3">Mobile App</h3>
+                <p data-i18n="portfolio-3-desc">Cross-platform mobil ilova iOS va Android uchun</p>
+            </div>
+        </div>
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VTWggu6hLOor34aSErXiEBtT2dt3Kx.png" alt="CRM System" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-4">CRM System</h3>
+                <p data-i18n="portfolio-4-desc">Mijozlarni boshqarish uchun integrated CRM platform</p>
+            </div>
+        </div>
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-S0qKHo8HUJ29PyWW9wftObZZF9GAwC.png" alt="Cloud Infrastructure" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-5">Cloud Infrastructure</h3>
+                <p data-i18n="portfolio-5-desc">Miqyos ega cloud infrastructure deployment</p>
+            </div>
+        </div>
+        <div class="portfolio-card">
+            <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-bXjPq4qG4jVi8Fsjqv1gU4XfOXxmDX.png" alt="AI Platform" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="portfolio-overlay">
+                <h3 data-i18n="portfolio-6">AI Machine Learning</h3>
+                <p data-i18n="portfolio-6-desc">Sun'iy intellekt va machine learning yechimlar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <h2 class="section-title"><span data-i18n="about-title">О нас</span></h2>
+    <p class="section-subtitle" data-i18n="about-subtitle">Узнайте больше о MahoratSoft</p>
+
+    <div class="about-container">
+        <div class="about-content">
+            <p class="about-description" data-i18n="about-desc">
+                MahoratSoft — цифровая команда, создающая умные сайты, приложения, CRM и IT-решения для бизнеса. Мы помогаем компаниям трансформировать свои идеи в успешные цифровые проекты.
+            </p>
+
+            <div class="about-features">
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 data-i18n="about-feature1">Современные технологии</h3>
+                        <p data-i18n="about-feature1-desc">Используем передовые решения и инструменты разработки для создания высокопроизводительных систем</p>
+                    </div>
+                </div>
+
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 data-i18n="about-feature2">Быстрая реализация</h3>
+                        <p data-i18n="about-feature2-desc">Эффективная работа и соблюдение сроков - мы ценим ваше время и доставляем проекты в срок</p>
+                    </div>
+                </div>
+
+                <div class="feature-item animate-slide-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 data-i18n="about-feature3">Команда профессионалов</h3>
+                        <p data-i18n="about-feature3-desc">Опытные специалисты в каждой области - разработчики, дизайнеры и менеджеры проектов высочайшего уровня</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-image">
+            <!-- Icon o'rniga rasm qo'yildi -->
+            <img src="https://images.pexels.com/photos/7511751/pexels-photo-7511751.jpeg" alt="MahoratSoft Team" style="width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+        </div>
+    </div>
+</section>
+
+<section id="benefits">
+    <h2 class="section-title"><span data-i18n="benefits-title">Зачем нужны сайты</span></h2>
+    <p class="section-subtitle" data-i18n="benefits-subtitle">Основные преимущества для вашего бизнеса</p>
+
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h3 data-i18n="benefit-1">Привлечение клиентов 24/7</h3>
+            <p data-i18n="benefit-1-desc">Ваш бизнес доступен круглосуточно, работая в интернете даже во время вашего отдыха</p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 data-i18n="benefit-2">Усиление бренда</h3>
+            <p data-i18n="benefit-2-desc">Профессиональный сайт укрепляет позиции вашей компании на рынке</p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h3 data-i18n="benefit-3">Повышение доверия</h3>
+            <p data-i18n="benefit-3-desc">Современный дизайн создаёт доверие у клиентов и улучшает их впечатление</p>
+        </div>
+
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 data-i18n="benefit-4">Увеличение продаж</h3>
+            <p data-i18n="benefit-4-desc">Превращает посетителей в клиентов через эффективные инструменты конверсии</p>
+        </div>
+    </div>
+</section>
+
+<section id="why-mahorat">
+    <h2 class="section-title"><span data-i18n="why-title">Nima uchun Mahorat Soft?</span></h2>
+    <p class="section-subtitle" data-i18n="why-subtitle">Biz 10 yildan ortiq tajribaga ega</p>
+
+    <div class="stats-grid">
+        <div class="stat-card animate-fade-scale">
+            <div class="stat-number" data-i18n="stat-1">150+</div>
+            <div class="stat-label" data-i18n="stat-1-label">Yakunlangan Loyihalar</div>
+        </div>
+        <div class="stat-card animate-fade-scale">
+            <div class="stat-number" data-i18n="stat-2">50+</div>
+            <div class="stat-label" data-i18n="stat-2-label">Xursand Mijozlar</div>
+        </div>
+        <div class="stat-card animate-fade-scale">
+            <div class="stat-number" data-i18n="stat-3">25+</div>
+            <div class="stat-label" data-i18n="stat-3-label">Professional Dasturchilar</div>
+        </div>
+        <div class="stat-card animate-fade-scale">
+            <div class="stat-number" data-i18n="stat-4">10+</div>
+            <div class="stat-label" data-i18n="stat-4-label">Yillik Tajriba</div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title"><span data-i18n="contact-title">Biz bilan Aloqa</span></h2>
+    <p class="section-subtitle" data-i18n="contact-subtitle">Sizning loyihangiz haqida bizga xabar bering</p>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt contact-icon"></i>
+                <div class="contact-content">
+                    <h3 data-i18n="contact-address">Manzil</h3>
+                    <p data-i18n="contact-address-text">Tashkent, Uzbekistan</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone contact-icon"></i>
+                <div class="contact-content">
+                    <h3 data-i18n="contact-phone">Telefon</h3>
+                    <p><a href="tel:+998901234567">+998 90 123 45 67</a></p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope contact-icon"></i>
+                <div class="contact-content">
+                    <h3 data-i18n="contact-email">Email</h3>
+                    <p><a href="mailto:info@mahoratsoft.uz">info@mahoratsoft.uz</a></p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock contact-icon"></i>
+                <div class="contact-content">
+                    <h3 data-i18n="contact-hours">Ish Vaqti</h3>
+                    <p data-i18n="contact-hours-text">Dushanba-Juma: 09:00 - 18:00</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 data-i18n="contact-social" style="margin-bottom: 1rem;">Biz bilan bog'lanin:</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/mahorat_soft/" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/MahoratSoft" class="social-link" title="Telegram"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="name" data-i18n="form-name">Ismingiz:</label>
+                <input type="text" id="name" name="name" data-i18n="form-name-placeholder" placeholder="Ismingizni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="email" data-i18n="form-email">Email:</label>
+                <input type="email" id="email" name="email" data-i18n="form-email-placeholder" placeholder="Email manzilingizni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="phone" data-i18n="form-phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" data-i18n="form-phone-placeholder" placeholder="Telefon raqamingizni kiriting">
+            </div>
+            <div class="form-group">
+                <label for="subject" data-i18n="form-subject">Mavzu:</label>
+                <input type="text" id="subject" name="subject" data-i18n="form-subject-placeholder" placeholder="Mavzuni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="message" data-i18n="form-message">Xabar:</label>
+                <textarea id="message" name="message" data-i18n="form-message-placeholder" placeholder="Sizning xabaringizni kiriting..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" data-i18n="form-submit">Yuborish</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4 data-i18n="footer-title">Mahorat Soft</h4>
+            <p data-i18n="footer-desc">Professional IT yechimlar va dasturiy ta'minot</p>
+        </div>
+        <div class="footer-section">
+            <h4 data-i18n="footer-links">Tez linklar</h4>
+            <ul>
+                <li><a href="#home" class="nav-link">Bosh sahifa</a></li>
+                <li><a href="#services" class="nav-link">Xizmatlar</a></li>
+                <li><a href="#portfolio" class="nav-link">Loyihalar</a></li>
+                <li><a href="#contact" class="nav-link">Aloqa</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4 data-i18n="footer-services">Xizmatlar</h4>
+            <ul>
+                <li><a href="#services">Web Dasturlash</a></li>
+                <li><a href="#services">Mobil Ilovalar</a></li>
+                <li><a href="#services">CRM Sistemalari</a></li>
+                <li><a href="#services">Cloud Xizmatlari</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4 data-i18n="footer-legal">Qonuniy</h4>
+            <ul>
+                <li><a href="#" data-i18n="footer-terms">Foydalanish Shartlari</a></li>
+                <li><a href="#" data-i18n="footer-privacy">Maxfiylik Siyosati</a></li>
+                <li><a href="#" data-i18n="footer-cookies">Cookie Siyosati</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-i18n="footer-copyright">&copy; 2024 Mahorat Soft. Barcha huquqlar himoyalangan.</p>
+    </div>
+</footer>
+<script>
+    const BOT_TOKEN = '8120322961:AAEsCckS_KLu9cuaN6K05HjZIVj8vW57dPg';
+    const CHAT_ID = '6935308294'; // Kanal username yoki chat ID
+
+    // Telegramga yuborish funksiyasi
+    async function sendToTelegram(name, phone, subject, message) {
+        const text = `
+🔔 <b>Yangi so'rov formasi</b>
+
+👤 <b>Ism:</b> ${name}
+📱 <b>Telefon:</b> ${phone}
+📝 <b>Mavzu:</b> ${subject}
+💬 <b>Xabar:</b> ${message}
+
+⏰ <b>Vaqt:</b> ${new Date().toLocaleString()}
+    `;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: text,
+                    parse_mode: 'HTML'
+                })
+            });
+
+            const data = await response.json();
+            return data.ok;
+        } catch (error) {
+            console.error('Telegramga yuborishda xatolik:', error);
+            return false;
+        }
+    }
+
+    // Formani yuborish
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        const success = await sendToTelegram(name, phone, subject, message);
+
+        if(success){
+            alert('Xabar yuborildi! Rahmat.');
+            document.querySelector('.contact-form').reset();
+        } else {
+            alert('Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.');
+        }
+    }
+</script>
+
+
+
+<script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    function toggleMenu() {
+        const navMenu = document.getElementById('navMenu');
+        navMenu.classList.toggle('active');
+    }
+
+    function scrollToSection(id) {
+        const element = document.getElementById(id);
+        element?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('navMenu').classList.remove('active');
+    }
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('animate-slide-up')) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
+                } else if (entry.target.classList.contains('animate-fade-scale')) {
+                    entry.target.style.animation = 'fadeInScale 0.6s ease-out forwards';
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .stat-card').forEach(el => {
+        observer.observe(el);
+    });
+
+
+
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navMenu').classList.remove('active');
+        });
+    });
+
+    const translations = {
+        uz: {
+            // Navigation
+            'nav-home': 'Bosh sahifa',
+            'nav-services': 'Xizmatlar',
+            'nav-portfolio': 'Loyihalar',
+            'nav-about': 'Haqimizda',
+            'nav-benefits': 'Foydalari',
+            'nav-why': 'Nima uchun',
+            'nav-contact': 'Aloqa',
+
+            // Hero Section
+            'hero-title': 'Zamonaviy IT Yechimlar',
+            'hero-desc': 'Mahorat Soft - sizning biznesingiz uchun professional va innovatsion dasturiy yechimlari taqdim etadi.',
+            'hero-btn-contact': 'Bog\'lanish',
+            'hero-btn-services': 'Xizmatlarni Ko\'rish',
+
+            // Hero Icons
+            'icon-web': 'Web Taraqqiyoti',
+            'icon-mobile': 'Mobil Ilovalar',
+            'icon-backend': 'Backend Xizmatlari',
+            'icon-security': 'Xavfsizlik',
+            'icon-cloud': 'Cloud Xizmatlari',
+            'icon-support': '24/7 Qo\'llab-quvvatlash',
+
+            // Services
+            'services-title': 'Bizning Xizmatlar',
+            'services-subtitle': 'Biz sotsiallashgan IT yechimlar taqdim etamiz',
+            'service-web': 'Web Taraqqiyoti',
+            'service-web-desc': 'React, Vue, Angular va boshqa zamonaviy frameworklar bilan professional veb-saytlar yaratamiz.',
+            'service-mobile': 'Mobil Ilovalar',
+            'service-mobile-desc': 'React Native va Flutter bilan cross-platform mobil ilovalarini ishlab chiqamiz.',
+            'service-backend': 'Backend Xizmatlari',
+            'service-backend-desc': 'Node.js, Python, Django va boshqa zamonaviy texnologiyalardan foydalanib backend xizmatlari.',
+            'service-security': 'Xavfsizlik',
+            'service-security-desc': 'Yuqori darajadagi xavfsizlik protokollari va ma\'lumotlar himoyasi.',
+            'service-cloud': 'Cloud Xizmatlari',
+            'service-cloud-desc': 'AWS, Google Cloud, Azure va boshqa bulutli platformalarda deployment va boshqaruv.',
+            'service-support': '24/7 Qo\'llab-quvvatlash',
+            'service-support-desc': 'Har qanday muammoni tezda yechish uchun 24/7 qo\'llab-quvvatlash jamasi.',
+
+            // Portfolio
+            'portfolio-title': 'Bizning Loyihalar',
+            'portfolio-subtitle': 'Muvaffaqiyatli yakunlangan loyihalari',
+            'portfolio-1': 'E-Commerce Platform',
+            'portfolio-1-desc': 'React.js va Node.js bilan yaratilgan online do\'kon platformasi',
+            'portfolio-2': 'Analytics Dashboard',
+            'portfolio-2-desc': 'Mustahkam analytics va reporting sistem',
+            'portfolio-3': 'Mobile App',
+            'portfolio-3-desc': 'Cross-platform mobil ilova iOS va Android uchun',
+            'portfolio-4': 'CRM System',
+            'portfolio-4-desc': 'Mijozlarni boshqarish uchun integrated CRM platform',
+            'portfolio-5': 'Cloud Infrastructure',
+            'portfolio-5-desc': 'Miqyos ega cloud infrastructure deployment',
+            'portfolio-6': 'AI Machine Learning',
+            'portfolio-6-desc': 'Sun\'iy intellekt va machine learning yechimlar',
+
+            // About
+            'about-title': 'Haqimizda',
+            'about-subtitle': 'MahoratSoft haqida batafsil ma’lumot oling',
+            'about-desc': '“MahoratSoft — biznes uchun aqlli veb-saytlar, ilovalar, CRM va IT yechimlar yaratadigan raqamli jamoa. Biz kompaniyalarga o‘z g‘oyalarini muvaffaqiyatli raqamli loyihalarga aylantirishda yordam beramiz',
+            'about-feature1': 'Zamonaviy texnologiyalar',
+            'about-feature1-desc': 'Eng ilg\'or yechimlar va ishlab chiqish vositalaridan foydalanamiz',
+            'about-feature2': 'Tez amalga oshirish',
+            'about-feature2-desc': 'Samarali ish va belgilangan muddatni saqlash',
+            'about-feature3': 'Mutaxassislar jamasi',
+            'about-feature3-desc': 'Har bir sohada tajribali mutaxassislar',
+
+            // Benefits
+            'benefits-title': 'Zачем нужны сайты',
+            'benefits-subtitle': 'Основные преимущества для вашего бизнеса',
+            'benefit-1': 'Привлечение клиентов 24/7',
+            'benefit-1-desc': 'Ваш бизнес доступен круглосуточно, работая в интернете даже во время вашего отдыха',
+            'benefit-2': 'Усиление бренда',
+            'benefit-2-desc': 'Профессиональный сайт укрепляет позиции вашей компании на рынке',
+            'benefit-3': 'Повышение доверия',
+            'benefit-3-desc': 'Современный дизайн создаёт доверие у клиентов и улучшает их впечатление',
+            'benefit-4': 'Увеличение продаж',
+            'benefit-4-desc': 'Превращает посетителей в клиентов через эффективные инструменты конверсии',
+
+            // Why Mahorat
+            'why-title': 'Nima uchun Mahorat Soft?',
+            'why-subtitle': 'Biz 10 yildan ortiq tajribaga ega',
+            'stat-1': '150+',
+            'stat-1-label': 'Yakunlangan Loyihalar',
+            'stat-2': '50+',
+            'stat-2-label': 'Xursand Mijozlar',
+            'stat-3': '25+',
+            'stat-3-label': 'Professional Dasturchilar',
+            'stat-4': '10+',
+            'stat-4-label': 'Yillik Tajriba',
+
+            // Contact
+            'contact-title': 'Biz bilan Aloqa',
+            'contact-subtitle': 'Sizning loyihangiz haqida bizga xabar bering',
+            'contact-address': 'Manzil',
+            'contact-address-text': 'Tashkent, Uzbekistan',
+            'contact-phone': 'Telefon',
+            'contact-email': 'Email',
+            'contact-hours': 'Ish Vaqti',
+            'contact-hours-text': 'Dushanba-Juma: 09:00 - 18:00',
+            'contact-social': 'Biz bilan bog\'lanin:',
+            'form-name': 'Ismingiz:',
+            'form-name-placeholder': 'Ismingizni kiriting',
+            'form-email': 'Email:',
+            'form-email-placeholder': 'Email manzilingizni kiriting',
+            'form-phone': 'Telefon:',
+            'form-phone-placeholder': 'Telefon raqamingizni kiriting',
+            'form-subject': 'Mavzu:',
+            'form-subject-placeholder': 'Mavzuni kiriting',
+            'form-message': 'Xabar:',
+            'form-message-placeholder': 'Sizning xabaringizni kiriting...',
+            'form-submit': 'Yuborish',
+            'form-success': 'Xabar yuborildi! Rahmat.',
+
+            // Footer
+            'footer-title': 'Mahorat Soft',
+            'footer-desc': 'Professional IT yechimlar va dasturiy ta\'minot',
+            'footer-links': 'Tez linklar',
+            'footer-services': 'Xizmatlar',
+            'footer-legal': 'Qonuniy',
+            'footer-terms': 'Foydalanish Shartlari',
+            'footer-privacy': 'Maxfiylik Siyosati',
+            'footer-cookies': 'Cookie Siyosati',
+            'footer-copyright': '© 2024 Mahorat Soft. Barcha huquqlar himoyalangan.'
+        },
+        ru: {
+            // Navigation
+            'nav-home': 'Главная',
+            'nav-services': 'Услуги',
+            'nav-portfolio': 'Портфолио',
+            'nav-about': 'О нас',
+            'nav-benefits': 'Преимущества',
+            'nav-why': 'Почему мы',
+            'nav-contact': 'Контакты',
+
+            // Hero Section
+            'hero-title': 'Современные IT Решения',
+            'hero-desc': 'MahoratSoft - предоставляет профессиональные и инновационные программные решения для вашего бизнеса.',
+            'hero-btn-contact': 'Свяжитесь с нами',
+            'hero-btn-services': 'Смотреть услуги',
+
+            // Hero Icons
+            'icon-web': 'Веб-разработка',
+            'icon-mobile': 'Мобильные приложения',
+            'icon-backend': 'Backend услуги',
+            'icon-security': 'Безопасность',
+            'icon-cloud': 'Облачные услуги',
+            'icon-support': 'Поддержка 24/7',
+
+            // Services
+            'services-title': 'Наши услуги',
+            'services-subtitle': 'Мы предоставляем специализированные IT-решения',
+            'service-web': 'Веб-разработка',
+            'service-web-desc': 'Создаём профессиональные веб-сайты с использованием React, Vue, Angular и других современных фреймворков.',
+            'service-mobile': 'Мобильные приложения',
+            'service-mobile-desc': 'Разрабатываем кроссплатформенные мобильные приложения на React Native и Flutter.',
+            'service-backend': 'Backend услуги',
+            'service-backend-desc': 'Предоставляем backend услуги используя Node.js, Python, Django и другие современные технологии.',
+            'service-security': 'Безопасность',
+            'service-security-desc': 'Высокоуровневые протоколы безопасности и защита данных.',
+            'service-cloud': 'Облачные услуги',
+            'service-cloud-desc': 'Развёртывание и управление на AWS, Google Cloud, Azure и других облачных платформах.',
+            'service-support': 'Поддержка 24/7',
+            'service-support-desc': 'Команда поддержки 24/7 для быстрого решения любых проблем.',
+
+            // Portfolio
+            'portfolio-title': 'Наши проекты',
+            'portfolio-subtitle': 'Успешно завершённые проекты',
+            'portfolio-1': 'E-Commerce платформа',
+            'portfolio-1-desc': 'Платформа интернет-магазина созданная на React.js и Node.js',
+            'portfolio-2': 'Analytics Dashboard',
+            'portfolio-2-desc': 'Мощная система аналитики и отчётности',
+            'portfolio-3': 'Мобильное приложение',
+            'portfolio-3-desc': 'Кроссплатформенное мобильное приложение для iOS и Android',
+            'portfolio-4': 'CRM система',
+            'portfolio-4-desc': 'Интегрированная CRM платформа для управления клиентами',
+            'portfolio-5': 'Cloud инфраструктура',
+            'portfolio-5-desc': 'Развёртывание облачной инфраструктуры с масштабированием',
+            'portfolio-6': 'AI и машинное обучение',
+            'portfolio-6-desc': 'Решения искусственного интеллекта и машинного обучения',
+
+            // About
+            'about-title': 'О нас',
+            'about-subtitle': 'Узнайте больше о MahoratSoft',
+            'about-desc': 'MahoratSoft — цифровая команда, создающая умные сайты, приложения, CRM и IT-решения для бизнеса. Мы помогаем компаниям трансформировать свои идеи в успешные цифровые проекты.',
+            'about-feature1': 'Современные технологии',
+            'about-feature1-desc': 'Используем передовые решения и инструменты разработки',
+            'about-feature2': 'Быстрая реализация',
+            'about-feature2-desc': 'Эффективная работа и соблюдение сроков',
+            'about-feature3': 'Команда профессионалов',
+            'about-feature3-desc': 'Опытные специалисты в каждой области',
+
+            // Benefits
+            'benefits-title': 'Зачем нужны сайты',
+            'benefits-subtitle': 'Основные преимущества для вашего бизнеса',
+            'benefit-1': 'Привлечение клиентов 24/7',
+            'benefit-1-desc': 'Ваш бизнес доступен круглосуточно, работая в интернете даже во время вашего отдыха',
+            'benefit-2': 'Усиление бренда',
+            'benefit-2-desc': 'Профессиональный сайт укрепляет позиции вашей компании на рынке',
+            'benefit-3': 'Повышение доверия',
+            'benefit-3-desc': 'Современный дизайн создаёт доверие у клиентов и улучшает их впечатление',
+            'benefit-4': 'Увеличение продаж',
+            'benefit-4-desc': 'Превращает посетителей в клиентов через эффективные инструменты конверсии',
+
+            // Why Mahorat
+            'why-title': 'Почему MahoratSoft?',
+            'why-subtitle': 'У нас более 10 лет опыта',
+            'stat-1': '150+',
+            'stat-1-label': 'Завершённых проектов',
+            'stat-2': '50+',
+            'stat-2-label': 'Довольных клиентов',
+            'stat-3': '25+',
+            'stat-3-label': 'Профессиональных разработчиков',
+            'stat-4': '10+',
+            'stat-4-label': 'Лет опыта',
+
+            // Contact
+            'contact-title': 'Свяжитесь с нами',
+            'contact-subtitle': 'Расскажите нам о вашем проекте',
+            'contact-address': 'Адрес',
+            'contact-address-text': 'Ташкент, Узбекистан',
+            'contact-phone': 'Телефон',
+            'contact-email': 'Email',
+            'contact-hours': 'Время работы',
+            'contact-hours-text': 'Пн-Пт: 09:00 - 18:00',
+            'contact-social': 'Свяжитесь с нами:',
+            'form-name': 'Ваше имя:',
+            'form-name-placeholder': 'Введите ваше имя',
+            'form-email': 'Email:',
+            'form-email-placeholder': 'Введите ваш email',
+            'form-phone': 'Телефон:',
+            'form-phone-placeholder': 'Введите ваш номер',
+            'form-subject': 'Тема:',
+            'form-subject-placeholder': 'Введите тему',
+            'form-message': 'Сообщение:',
+            'form-message-placeholder': 'Напишите ваше сообщение...',
+            'form-submit': 'Отправить',
+            'form-success': 'Сообщение отправлено! Спасибо.',
+
+            // Footer
+            'footer-title': 'MahoratSoft',
+            'footer-desc': 'Профессиональные IT решения и программное обеспечение',
+            'footer-links': 'Быстрые ссылки',
+            'footer-services': 'Услуги',
+            'footer-legal': 'Юридическая информация',
+            'footer-terms': 'Условия использования',
+            'footer-privacy': 'Политика конфиденциальности',
+            'footer-cookies': 'Политика Cookie',
+            'footer-copyright': '© 2024 MahoratSoft. Все права защищены.'
+        },
+        en: {
+            // Navigation
+            'nav-home': 'Home',
+            'nav-services': 'Services',
+            'nav-portfolio': 'Portfolio',
+            'nav-about': 'About',
+            'nav-benefits': 'Benefits',
+            'nav-why': 'Why Us',
+            'nav-contact': 'Contact',
+
+            // Hero Section
+            'hero-title': 'Modern IT Solutions',
+            'hero-desc': 'MahoratSoft provides professional and innovative software solutions for your business.',
+            'hero-btn-contact': 'Get in Touch',
+            'hero-btn-services': 'View Services',
+
+            // Hero Icons
+            'icon-web': 'Web Development',
+            'icon-mobile': 'Mobile Apps',
+            'icon-backend': 'Backend Services',
+            'icon-security': 'Security',
+            'icon-cloud': 'Cloud Services',
+            'icon-support': '24/7 Support',
+
+            // Services
+            'services-title': 'Our Services',
+            'services-subtitle': 'We provide specialized IT solutions',
+            'service-web': 'Web Development',
+            'service-web-desc': 'Creating professional websites using React, Vue, Angular and other modern frameworks.',
+            'service-mobile': 'Mobile Apps',
+            'service-mobile-desc': 'Developing cross-platform mobile applications with React Native and Flutter.',
+            'service-backend': 'Backend Services',
+            'service-backend-desc': 'Backend services using Node.js, Python, Django and other modern technologies.',
+            'service-security': 'Security',
+            'service-security-desc': 'High-level security protocols and data protection.',
+            'service-cloud': 'Cloud Services',
+            'service-cloud-desc': 'Deployment and management on AWS, Google Cloud, Azure and other cloud platforms.',
+            'service-support': '24/7 Support',
+            'service-support-desc': '24/7 support team for quick resolution of any issues.',
+
+            // Portfolio
+            'portfolio-title': 'Our Projects',
+            'portfolio-subtitle': 'Successfully completed projects',
+            'portfolio-1': 'E-Commerce Platform',
+            'portfolio-1-desc': 'Online store platform created with React.js and Node.js',
+            'portfolio-2': 'Analytics Dashboard',
+            'portfolio-2-desc': 'Powerful analytics and reporting system',
+            'portfolio-3': 'Mobile App',
+            'portfolio-3-desc': 'Cross-platform mobile app for iOS and Android',
+            'portfolio-4': 'CRM System',
+            'portfolio-4-desc': 'Integrated CRM platform for customer management',
+            'portfolio-5': 'Cloud Infrastructure',
+            'portfolio-5-desc': 'Cloud infrastructure deployment with scaling',
+            'portfolio-6': 'AI & Machine Learning',
+            'portfolio-6-desc': 'Artificial intelligence and machine learning solutions',
+
+            // About
+            'about-title': 'About Us',
+            'about-subtitle': 'Learn more about MahoratSoft',
+            'about-desc': 'MahoratSoft is a digital team creating smart websites, applications, CRM and IT solutions for business. We help companies transform their ideas into successful digital projects.',
+            'about-feature1': 'Modern Technologies',
+            'about-feature1-desc': 'Using cutting-edge solutions and development tools',
+            'about-feature2': 'Fast Implementation',
+            'about-feature2-desc': 'Efficient work and adherence to deadlines',
+            'about-feature3': 'Professional Team',
+            'about-feature3-desc': 'Experienced specialists in every field',
+
+            // Benefits
+            'benefits-title': 'Why You Need Websites',
+            'benefits-subtitle': 'Key benefits for your business',
+            'benefit-1': 'Attract Customers 24/7',
+            'benefit-1-desc': 'Your business is available round the clock, working on the internet even during your rest',
+            'benefit-2': 'Brand Strengthening',
+            'benefit-2-desc': 'A professional website strengthens your company\'s market position',
+            'benefit-3': 'Build Trust',
+            'benefit-3-desc': 'Modern design creates trust with customers and improves their impression',
+            'benefit-4': 'Increase Sales',
+            'benefit-4-desc': 'Converts visitors into customers through effective conversion tools',
+
+            // Why Mahorat
+            'why-title': 'Why MahoratSoft?',
+            'why-subtitle': 'We have over 10 years of experience',
+            'stat-1': '150+',
+            'stat-1-label': 'Completed Projects',
+            'stat-2': '50+',
+            'stat-2-label': 'Happy Clients',
+            'stat-3': '25+',
+            'stat-3-label': 'Professional Developers',
+            'stat-4': '10+',
+            'stat-4-label': 'Years of Experience',
+
+            // Contact
+            'contact-title': 'Get in Touch',
+            'contact-subtitle': 'Tell us about your project',
+            'contact-address': 'Address',
+            'contact-address-text': 'Tashkent, Uzbekistan',
+            'contact-phone': 'Phone',
+            'contact-email': 'Email',
+            'contact-hours': 'Working Hours',
+            'contact-hours-text': 'Mon-Fri: 09:00 - 18:00',
+            'contact-social': 'Connect with us:',
+            'form-name': 'Your Name:',
+            'form-name-placeholder': 'Enter your name',
+            'form-email': 'Email:',
+            'form-email-placeholder': 'Enter your email',
+            'form-phone': 'Phone:',
+            'form-phone-placeholder': 'Enter your phone',
+            'form-subject': 'Subject:',
+            'form-subject-placeholder': 'Enter subject',
+            'form-message': 'Message:',
+            'form-message-placeholder': 'Write your message...',
+            'form-submit': 'Submit',
+            'form-success': 'Message sent! Thank you.',
+
+            // Footer
+            'footer-title': 'MahoratSoft',
+            'footer-desc': 'Professional IT solutions and software',
+            'footer-links': 'Quick Links',
+            'footer-services': 'Services',
+            'footer-legal': 'Legal',
+            'footer-terms': 'Terms of Use',
+            'footer-privacy': 'Privacy Policy',
+            'footer-cookies': 'Cookie Policy',
+            'footer-copyright': '© 2024 MahoratSoft. All rights reserved.'
+        }
+    };
+
+    let currentLanguage = localStorage.getItem('language') || 'uz';
+
+    function changeLanguage(lang) {
+        currentLanguage = lang;
+        localStorage.setItem('language', lang);
+        updatePageLanguage();
+        updateLangButtons();
+    }
+
+    function updateLangButtons() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === currentLanguage) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    function getTranslation(key) {
+        return translations[currentLanguage][key] || key;
+    }
+
+    function updatePageLanguage() {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = getTranslation(key);
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                if (el.placeholder) {
+                    el.placeholder = translation;
+                }
+            } else {
+                el.textContent = translation;
+            }
+        });
+    }
+
+    // Initialize language on page load
+    window.addEventListener('load', () => {
+        updateLangButtons();
+        updatePageLanguage();
+    });
+</script>
+
+</body>
+</html>
